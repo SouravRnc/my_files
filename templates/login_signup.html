@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+		function show_pass_signup() {
+			var show = document.getElementById("pass1");
+			show.setAttribute('type','text');
+			var delaytime=1000;
+			setTimeout(function hide_pass() {
+			show.setAttribute('type','password');
+				}, delaytime);
+
+		}
+
+		function show_pass_login() {
+			var show = document.getElementById("login_password");
+			show.setAttribute('type','text');
+			var delaytime=1000;
+			setTimeout(function hide_pass() {
+			show.setAttribute('type','password');
+				}, delaytime);
+
+		}
+
+		// function match_pass(){
+		// 	var p1=document.getElementById("pass1").value;
+		// 	var p2=document.getElementById("pass2").value;
+		// 	if(p1 == p2){
+		// 		document.getElementById("pass_match").style.display="none";
+		// 		document.getElementById("submit").removeAttribute("disabled");
+		// 		document.getElementById("pass2").disabled=true;
+		// 		document.getElementById("pass1").disabled=true;
+		// 	}
+		// 	else{
+		// 		document.getElementById("pass_match").style.display="block";
+		// 		document.getElementById("submit").setAttribute("disabled");
+		// 	}
+		
+		// }
+
+
+	</script>
+	<style type="text/css">
+		#banner{
+			width: 99%; 
+			height: 20%;
+			background-color: #3333aa;
+			font-family: Arial;
+			font-size: 100px;
+			border: 2px solid black;
+			font-weight: bold;
+			text-align: right;
+			color: white;
+			padding: 5px;
+		}
+
+		.banner_img{
+			width: 45%;
+			height: 110px
+		}
+
+		.banner_text{
+			width: 50%;
+			right: 30px;
+		}
+
+		.columns{
+			font-weight: bold;
+			font-style: italic;
+			width: 100%;
+			background-color: black;
+		}
+
+		.column1{
+			padding: 15px;
+			width: 30%;
+			float: left;
+			margin-left: 100px;
+			border-radius: 50%;
+			background-color: orange;
+		}
+
+		.column2{
+			padding: 15px;
+			width: 30%;
+			float: right;
+			margin-right: 100px;
+			border-radius: 50%;
+			background-color: orange;
+		}
+
+		.pass2{
+			width: 90%;
+		}
+
+		#password_area{
+			width: 100%;
+		}
+
+		#showpass, #showpass1{
+			height: 15px;
+			width: 15px;
+			right: 5px;
+			top: 5px;
+		}
+
+		#pass_match{
+			color: red;
+			font-size: 10px;
+		}
+
+		/*#login_form, #signup_form{
+			background-color: orange;
+			border-radius: 50%;
+		}*/
+
+
+	</style>
+	<title></title>
+</head>
+<body>
+	<div id="banner">
+		<img align="left" src="/static/happy-customers.jpg" class="banner_img">
+		<span class="banner_text">Online_Mandi</span>
+	</div>
+	<br>
+	<hr>
+	<br>
+	<div class="columns">
+		<div class="column1">
+			<form action="http://192.168.100.16:8000/verify" id="login_form" method="POST">
+				<fieldset>
+					<legend>Login Here</legend>
+					e-mail:
+					<br>
+					<input type="email" name="login_email" id="login_email" placeholder="email..." required>
+					<br>
+					password:
+					<br>
+					<input type="password" name="login_password" id="login_password" placeholder="password..." required>
+					<img src="/static/showpass.png" id="showpass1" onclick="show_pass_login()">
+					<br>
+					<button type="submit">Login</button>
+				</fieldset>
+			</form>
+		</div>
+		<div class="column2">
+			Haven't signed up yet?<br>
+			<br>
+			<form action="http://192.168.100.16:8000/signup" method="POST" id="signup_form"> 
+				<fieldset>
+					<legend>Sign Up Here</legend>
+					e-mail:
+					<br>
+					<input type="email" name="user_email" placeholder="email..." required>
+					<br>
+					user-name:
+					<br>
+					<input type="text" name="username" placeholder="username...">
+					<br>
+					age:
+					<br>
+					<input type="number" name="user_age" placeholder="age..." required>
+					<br>
+					gender:
+					<br>
+					<select name="user_gender">
+						<option value="male" name="user_male">Male</option>
+						<option value="female" name="user_female">Female</option>
+						<option value="others" name="user_others">Others</option>
+					</select>
+					<br>
+					password:
+					<br>
+					<input type="password" name="user_password1" placeholder="password..." id="pass1" required>
+					<img src="/static/showpass.png" id="showpass" onclick="show_pass_signup()">
+					<!-- <br>
+					re-enter your password:
+					<br>
+					<input type="password" name="user_password2" placeholder="re-enter your password..." id="pass2" onkeyup="match_pass()" required>
+					
+					<span id = "pass_match" style = "display: none;">*passwords don't match*</span> 
+
+					AJAX CODE FOR PASSWORD MATCHING!-->
+					<br>
+					<button type="submit" id="submit">Signup</button>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

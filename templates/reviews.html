@@ -1,0 +1,110 @@
+<!doctype html>
+<head>
+	<script>
+        function load_chat(){
+        	var xhttp = new XMLHttpRequest();
+        	xhttp.onreadystatechange = function() {
+        		if (this.readyState == 4 && this.status == 200){
+        			document.getElementById("alltext").innerHTML = this.responseText;
+        		}
+        	};
+
+        	xhttp.open("GET", "http://192.168.100.16/")
+        }
+        setTimeout("preventBack()", 0);
+	</script>
+	<style>
+
+		.next-input{
+			position: relative;
+			width: 50%;
+			border-radius: 10px;
+			border: 5px solid black;
+		}
+
+		.next-input input {
+
+			width: 99%;
+			height: 60px;
+			background-color: white;
+			font-weight: bold;
+			font-family: Arial;
+			border-radius: 8px;
+		}
+
+		#alltext{
+			
+			border: 2px solid black;
+			background-color: powderblue;
+			color: black;
+			border-radius: 10px;
+			font-style: italic;
+			font-weight: bold;
+			text-align: left;
+			padding: 10px;
+		}
+
+		
+		#logout {
+			float: right;
+			width: 10%;
+			height: 20px;
+			color: white;
+			border-radius: 8px;
+			background-color: blue;
+		}
+		/*.next-input img {
+			width: 50px;
+			height: 50px;
+			border-radius: 100%;
+			position: absolute;
+			top: 8px;
+			left: 615px;
+		}	
+		*/
+		#send_msg{
+			width: 100%;
+			height: 100%
+			background-color: green;
+		}
+
+		#send_msg : hover {
+			background-color: powderblue;	
+		}
+
+
+
+	</style>
+
+	<!-- <script>
+		function send(){
+			window.location("http://192.168.100.6:8000/send_msg")
+		}
+	</script>
+ -->
+
+	<title>AFTER LOGIN</title>
+</head>
+<body>
+	<div align="right">
+	<a href="http://192.168.100.16:8000/tologin"><u>logout</u></a>
+	</div>
+	<br>
+	<br>
+	<div id="alltext" style="overflow-y: scroll; height:400px; width: 98%">
+		{% for key in result %}
+		{{	key[0]}} : {{ key[1] }}<br>
+		{% endfor %}
+	</div>
+	<br>
+	
+	<div id="nextinput" class="next-input">
+		<form action="http://192.168.100.16:8000/chat" method="POST">
+		<input type="text" name="input_val" id="userinput" placeholder="TYPE YOUR MESSAGE HERE...">
+		<button type="submit" id="send_msg">SEND</button>
+		</form>
+	</div>
+
+	<br>
+</body>
+</html>
